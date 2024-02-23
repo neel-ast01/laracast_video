@@ -22,7 +22,12 @@ class Database
         return $statement;
     }
 
-  
+
+
+    // public function fetch()
+    // {
+    //     return $this->statement->fetch();
+    // }
 }
 
 

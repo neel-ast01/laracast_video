@@ -30,6 +30,8 @@ $db = new Database($config['database']);
 $heading = "Note";
 $currentUserId = 1;
 
+
+
 $id = $_GET['id'];
 
 $note = $db->query("select * from notes where id = {$id}")->fetch();

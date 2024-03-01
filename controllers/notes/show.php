@@ -23,11 +23,11 @@
 // require "views/note.view.php";
 
 
-$config = require("config.php");
+$config = require base_path('config.php');
 
 $db = new Database($config['database']);
 
-$heading = "Note";
+// $heading = "Note";
 $currentUserId = 1;
 
 
@@ -42,4 +42,9 @@ authorize($note['user_id'] === $currentUserId);
 //     abort(Response::FORBIDDEN);
 // }
 
-require "./Views/note.view.php";
+// require "views/notes/show.view.php";
+
+view('notes/show.view.php', [
+    'heading' => "Note",
+    'note' => $note
+]);

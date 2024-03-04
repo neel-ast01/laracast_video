@@ -14,6 +14,13 @@
             <?= $note['description'] ?>
         </p>
 
+        <form method="POST" class="mt-6">
+            <input type="hidden" name="id" value="<?= $note['id'] ?>">
+            <button class="text-mm text-red-500">
+                Delete
+            </button>
+        </form>
+
 
 
     </div>

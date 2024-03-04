@@ -1,50 +1,35 @@
 <?php
 
-// $config = require('config.php');
-// $db = new Database($config['database']);
-
-// $heading = "Note";
-// $currentUserId = 1;
-
-
-// $note = $db->query('SELECT * FROM notes WHERE  id = :id', [
-//     'id' => $_GET['id']
-// ])->fetch();
-
-
-// if (!$note) {
-//     abort();
-// }
-
-// if ($note['user_id'] !== $currentUserId) {
-//     abort(Response::FORBIDDEN);
-// }
-
-// require "views/note.view.php";
-
+use Core\Database;
 
 $config = require base_path('config.php');
-
 $db = new Database($config['database']);
-
-// $heading = "Note";
 $currentUserId = 1;
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $id = $_GET['id'];
+
+    $note = $db->query("select * from notes where id = {$id}")->findOrFail();
+
+    authorize($note['user_id'] === $currentUserId);
+
+    $db->query("delete from notes where id = {$id}");
+
+    header('location: /notes');
+    exit();
+} else {
 
 
-$id = $_GET['id'];
 
-$note = $db->query("select * from notes where id = {$id}")->findOrFail();
+    $id = $_GET['id'];
 
-authorize($note['user_id'] === $currentUserId);
+    $note = $db->query("select * from notes where id = {$id}")->findOrFail();
 
-// if ($note['user_id'] !== $currentUserId) {
-//     abort(Response::FORBIDDEN);
-// }
+    authorize($note['user_id'] === $currentUserId);
 
-// require "views/notes/show.view.php";
-
-view('notes/show.view.php', [
-    'heading' => "Note",
-    'note' => $note
-]);
+    view('notes/show.view.php', [
+        'heading' => "Note",
+        'note' => $note
+    ]);
+}

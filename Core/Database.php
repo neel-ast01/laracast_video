@@ -1,5 +1,9 @@
 <?php
 
+namespace Core;
+
+use PDO;
+
 class Database
 {
 
@@ -14,7 +18,7 @@ class Database
         // $this->connection = new PDO($dns, $username, $password, [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]);
         try {
             $this->connection = new PDO($dns, $username, $password, [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]);
-        } catch (PDOException $e) {
+        } catch (\PDOException $e) {
             die("Connection failed: " . $e->getMessage());
         }
 

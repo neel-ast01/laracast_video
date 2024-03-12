@@ -1,0 +1,27 @@
+{
+  "name": "neel/laracast_couse",
+  "authors": [
+    {
+      "name": "neel002b",
+      "email": "neelbhalodiya555@gmail.com"
+    }
+  ],
+  "require": {
+    "illuminate/collections": "^10.47"
+  },
+  "autoload": {
+    "psr-4": {
+      "Core\\": "Core/",
+      "Http\\": "Http/"
+      
+    }
+  },
+  "require-dev": {
+    "pestphp/pest": "^2.34"
+  },
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
+  }
+}
